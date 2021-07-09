@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RelativeLayout
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
@@ -61,6 +62,8 @@ class AdapterImageSlider(private val act: Activity, var items: ArrayList<Image>)
             if (onItemClickListener != null) {
                 onItemClickListener!!.onItemClick(v, obj)
             }
+
+            Toast.makeText(act,obj.name,Toast.LENGTH_SHORT).show()
         }
         (container as ViewPager).addView(view)
         return view
