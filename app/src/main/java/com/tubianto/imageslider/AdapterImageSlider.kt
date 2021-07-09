@@ -15,8 +15,7 @@ import com.bumptech.glide.Glide
 /**
  * Created by Tubianto on 08/07/2021.
  */
-class AdapterImageSlider(private val act: Activity, items: List<Image>) : PagerAdapter() {
-    private var items: List<Image>
+class AdapterImageSlider(private val act: Activity, var items: ArrayList<Image>) : PagerAdapter() {
     private var onItemClickListener: OnItemClickListener? = null
 
     interface OnItemClickListener {
@@ -36,8 +35,10 @@ class AdapterImageSlider(private val act: Activity, items: List<Image>) : PagerA
     }
 
     fun setItems(items: List<Image>) {
-        this.items = items
-        notifyDataSetChanged()
+        this.items.apply {
+            clear()
+            addAll(items)
+        }
     }
 
     override fun isViewFromObject(view: View, obj: Any): Boolean {
@@ -67,10 +68,5 @@ class AdapterImageSlider(private val act: Activity, items: List<Image>) : PagerA
 
     override fun destroyItem(container: ViewGroup, position: Int, obj: Any) {
         (container as ViewPager).removeView(obj as RelativeLayout)
-    }
-
-    // constructor
-    init {
-        this.items = items
     }
 }
