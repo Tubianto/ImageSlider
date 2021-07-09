@@ -57,6 +57,16 @@ class MainActivity : AppCompatActivity() {
         tvTitle?.text = adapterImageSlider!!.getItem(0).name
         tvPlace?.text = adapterImageSlider!!.getItem(0).place
 
+        handleViewPager()
+
+        startAutoSlider(adapterImageSlider!!.count)
+    }
+
+    private fun getData() {
+        retrieveList(dataItems)
+    }
+
+    private fun handleViewPager() {
         viewPager!!.addOnPageChangeListener(object : OnPageChangeListener {
             override fun onPageScrolled(
                 pos: Int,
@@ -73,11 +83,6 @@ class MainActivity : AppCompatActivity() {
 
             override fun onPageScrollStateChanged(state: Int) {}
         })
-        startAutoSlider(adapterImageSlider!!.count)
-    }
-
-    private fun getData() {
-        retrieveList(dataItems)
     }
 
     private fun retrieveList(items: List<Image>) {
