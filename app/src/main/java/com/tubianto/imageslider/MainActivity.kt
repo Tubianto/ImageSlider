@@ -66,6 +66,13 @@ class MainActivity : AppCompatActivity() {
         retrieveList(dataItems)
     }
 
+    private fun retrieveList(items: List<Image>) {
+        adapterImageSlider?.apply {
+            setItems(items)
+            notifyDataSetChanged()
+        }
+    }
+
     private fun handleViewPager() {
         viewPager!!.addOnPageChangeListener(object : OnPageChangeListener {
             override fun onPageScrolled(
@@ -83,13 +90,6 @@ class MainActivity : AppCompatActivity() {
 
             override fun onPageScrollStateChanged(state: Int) {}
         })
-    }
-
-    private fun retrieveList(items: List<Image>) {
-        adapterImageSlider?.apply {
-            setItems(items)
-            notifyDataSetChanged()
-        }
     }
 
     private fun addBottomDots(llDots: LinearLayout?, size: Int, current: Int) {
